@@ -3,7 +3,6 @@ import joblib
 import pandas as pd
 import numpy as np
 import os 
-from flask_cors import CORS
 from dotenv import load_dotenv
 
 # from sklearn.preprocessing import LabelEncoder
@@ -13,7 +12,6 @@ app = Flask(__name__)
 allowed_origin = os.getenv("FRONT_END_URL")
 
 # Enable CORS for the specific route and origin
-CORS(app, resources={r"/*": {"origins": allowed_origin}})
 
 model = joblib.load('models/crop_recommendation_model.pkl')
 # Load the pre-trained model and encoders
