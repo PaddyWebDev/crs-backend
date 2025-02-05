@@ -4,11 +4,11 @@ import pandas as pd
 import numpy as np
 import os 
 from dotenv import load_dotenv
-
+from flask_cors import CORS
 # from sklearn.preprocessing import LabelEncoder
 
 app = Flask(__name__)
-
+CORS(app)  # 
 allowed_origin = os.getenv("FRONT_END_URL")
 
 # Enable CORS for the specific route and origin
