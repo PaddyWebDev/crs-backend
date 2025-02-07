@@ -33,7 +33,7 @@ def home():
 
 @app.after_request
 def add_header(response):
-    response.headers['Access-Control-Allow-Origin'] = True
+    response.headers['Access-Control-Allow-Origin'] = allowed_origin
     return response
   
 @app.route('/predict', methods=['POST'])
