@@ -8,8 +8,8 @@ from flask_cors import CORS
 # from sklearn.preprocessing import LabelEncoder
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})  # 
 allowed_origin = os.getenv("FRONT_END_URL")
+CORS(app, supports_credentials=True, origins=[allowed_origin])
 
 # Enable CORS for the specific route and origin
 
