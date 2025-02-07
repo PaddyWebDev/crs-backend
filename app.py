@@ -9,7 +9,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 allowed_origin = os.getenv("FRONT_END_URL")
 
-CORS(app, supports_credentials=True, origins=["https://crs-frontend-sage.vercel.app/"])
+CORS(app, supports_credentials=True, origins=["https://crs-frontend-sage.vercel.app"])
 
 # Enable CORS for the specific route and origin
 
@@ -38,7 +38,7 @@ def home():
   
 @app.after_request
 def add_cors_headers(response):
-    response.headers.add('Access-Control-Allow-Origin', 'https://crs-frontend-sage.vercel.app/')
+    response.headers.add('Access-Control-Allow-Origin', 'https://crs-frontend-sage.vercel.app')
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     return response
   
