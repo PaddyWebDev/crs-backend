@@ -9,6 +9,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 allowed_origin = os.getenv("FRONT_END_URL")
+app.config['Access-Control-Allow-Origin'] = True
 CORS(app, supports_credentials=True, origins=[allowed_origin])
 
 # Enable CORS for the specific route and origin
