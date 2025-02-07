@@ -7,14 +7,13 @@ from flask_cors import CORS
 # from sklearn.preprocessing import LabelEncoder
 
 app = Flask(__name__)
-allowed_origin = os.getenv("FRONT_END_URL")
 
-CORS(app, supports_credentials=True, origins=["https://crs-frontend-sage.vercel.app"])
+CORS(app)
 
-# Enable CORS for the specific route and origin
+
 
 model = joblib.load('models/crop_recommendation_model.pkl')
-# Load the pre-trained model and encoders
+
 model = joblib.load('models/crop_recommendation_model.pkl')
 district_encoder = joblib.load('models/District_encoder.pkl')
 village_encoder = joblib.load('models/Village_encoder.pkl')
@@ -29,27 +28,9 @@ def home():
   return make_response("Backend for Crop Recommendation System",200)
 
 
-
-# @app.after_request
-# def add_header(response):
-#     response.headers['Access-Control-Allow-Origin'] = allowed_origin
-#     return response
-  
-  
-@app.after_request
-def add_cors_headers(response):
-    response.headers.add('Access-Control-Allow-Origin', 'https://crs-frontend-sage.vercel.app')
-    response.headers.add('Access-Control-Allow-Credentials', 'true')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
-    return response
-  
 @app.route('/predict', methods=['POST'])
 def predict():
   try:
-    
-    if(request.origin != allowed_origin):
-      return make_response({"Error": {"code": 403, "message": "Origin not allowed"}}, 403)
 
     data = request.get_json()
     
