@@ -27,8 +27,15 @@ def value_encoder(district, village, soil_quality):
 
 @app.route('/', methods=["GET"])
 def home():
-    return "Hello, Flask!"
+  return make_response("Backend for Crop Recommendation System",200)
 
+
+
+@app.after_request
+def add_header(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+  
 @app.route('/predict', methods=['POST'])
 def predict():
   try:
