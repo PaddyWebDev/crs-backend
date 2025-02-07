@@ -31,9 +31,17 @@ def home():
 
 
 
+# @app.after_request
+# def add_header(response):
+#     response.headers['Access-Control-Allow-Origin'] = allowed_origin
+#     return response
+  
+  
 @app.after_request
-def add_header(response):
-    response.headers['Access-Control-Allow-Origin'] = allowed_origin
+def add_cors_headers(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     return response
   
 @app.route('/predict', methods=['POST'])
