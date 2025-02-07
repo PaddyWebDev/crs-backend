@@ -3,14 +3,13 @@ import joblib
 import pandas as pd
 import numpy as np
 import os 
-from dotenv import load_dotenv
 from flask_cors import CORS
 # from sklearn.preprocessing import LabelEncoder
 
 app = Flask(__name__)
 allowed_origin = os.getenv("FRONT_END_URL")
-app.config['Access-Control-Allow-Origin'] = True
-CORS(app, supports_credentials=True, origins=[allowed_origin])
+
+CORS(app, supports_credentials=True, origins=["https://crs-frontend-sage.vercel.app/"])
 
 # Enable CORS for the specific route and origin
 
@@ -39,8 +38,7 @@ def home():
   
 @app.after_request
 def add_cors_headers(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Origin', 'https://crs-frontend-sage.vercel.app/')
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     return response
   
